@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Norfolk, 2023 — Tony Dongfang Zhao</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body data-project-id="norfolk-2023">
+    <div class="app app--project-gallery" id="app">
+      <div id="nav-host"></div>
+      <main class="main--gallery" data-view="gallery" aria-label="Gallery view">
+        <div class="gallery__stage">
+          <div class="gallery__image-wrap">
+            <img class="gallery__image" id="gallery-image" src="" alt="" />
+          </div>
+          <aside class="gallery__caption" aria-live="polite">
+            <span class="gallery__caption-title" id="gallery-title"></span>
+            <div class="gallery__caption-details" id="gallery-caption-details">
+              <span class="gallery__caption-size" id="gallery-size"></span>
+              <span class="gallery__caption-medium" id="gallery-medium"></span>
+              <span class="gallery__caption-year" id="gallery-year"></span>
+            </div>
+          </aside>
+        </div>
+      </main>
+      <div class="main--grid is-hidden" data-view="grid" aria-label="Grid view">
+        <div class="grid__works" id="project-grid"></div>
+      </div>
+    </div>
+    <script src="js/site-config.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/project.js"></script>
+    <script>
+      initProjectPage();
+    </script>
+  </body>
+</html>
