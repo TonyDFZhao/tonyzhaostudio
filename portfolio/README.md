@@ -5,23 +5,40 @@ Static HTML portfolio for Tony Dongfang Zhao. Designed at **1440px** (desktop mi
 ## Structure
 
 ```
-portfolio/
-├── MANA_2026.html              ← homepage (change in site-config.js)
-├── Specimens_2026.html
-├── NARS-Foundation_2025.html
-├── Lake-House_2024.html
-├── Norfolk_2023.html
-├── about_2023.html
-├── exhibition-text-lake-house.html
-├── css/main.css
-├── js/site-config.js           ← projects, images, home page
-├── js/nav.js
-├── js/project.js
-├── fonts/
-└── assets/
+/
+├── index.html                  ← redirects to /MANA/
+├── MANA/index.html             ← homepage (change homeSlug in site-config.js)
+├── Specimens/index.html
+├── NARS-Foundation/index.html
+├── Lake-House/index.html
+├── Norfolk/index.html
+├── bio/index.html
+├── the-room-built-with-gaze/index.html
+├── portfolio/
+│   ├── css/main.css
+│   ├── js/site-config.js       ← projects, images, slugs
+│   ├── js/nav.js
+│   ├── js/project.js
+│   ├── fonts/
+│   └── assets/
+└── Paintings/
 ```
 
-Images live in `Paintings/<project-folder>/` at the repo root. Paths in `site-config.js` use `../Paintings/…` so they work for local preview and GitHub Pages without a symlink.
+Images live in `Paintings/<project-folder>/` at the repo root. Paths in `site-config.js` use `/Paintings/…` (absolute from site root).
+
+## URLs
+
+| Page | URL |
+|------|-----|
+| MANA (home) | `/MANA/` |
+| Specimens | `/Specimens/` |
+| NARS Foundation | `/NARS-Foundation/` |
+| Lake House | `/Lake-House/` |
+| Norfolk | `/Norfolk/` |
+| Bio/CV | `/bio/` |
+| Exhibition text | `/the-room-built-with-gaze/` |
+
+Old `portfolio/*.html` paths redirect to these URLs.
 
 ## Image fields (`site-config.js`)
 
@@ -44,29 +61,30 @@ Set `showGridView: false` on a project (e.g. Norfolk) to hide the grid toggle an
 ## Add a new project
 
 1. Add images under `Paintings/Your-Project-YYYY/`.
-2. Add an entry to `projects` in `js/site-config.js` (copy an existing block).
-3. Duplicate any `*_YYYY.html` project file, set `data-project-id` and the `<title>`.
-4. Add the new filename to the `page` field in config.
+2. Add an entry to `projects` in `js/site-config.js` with a unique `slug` (used in the URL).
+3. Create `/<slug>/index.html` at the repo root (copy from `MANA/index.html`, set `data-project-id` and `<title>`).
+4. Optionally add a redirect in `portfolio/` if migrating an old filename.
 
 ## Change the homepage
 
-In `js/site-config.js`, set `homePage` to the new HTML filename (e.g. `"untitled_2025.html"`). Update `index.html` at the repo root if you use that redirect.
+In `js/site-config.js`, set `homeSlug` to the project slug (e.g. `"MANA"`). Update root `index.html` to redirect to that slug.
 
 ## Local preview
 
+Serve from the **repository root** (not `portfolio/` alone):
+
 ```bash
-cd portfolio
 python3 -m http.server 8080
 ```
 
-Open http://localhost:8080/MANA_2026.html
+Open http://localhost:8080/MANA/
 
 ## Publish on GitHub Pages
 
-1. Push this repo to GitHub (`portfolio/`, `Paintings/`, root `index.html`, fonts, and assets must all be included).
+1. Push this repo to GitHub (`portfolio/`, route folders, `Paintings/`, root `index.html`, fonts, and assets must all be included).
 2. In the repo: **Settings → Pages → Build and deployment → Source**: Deploy from a branch.
-3. Branch **main** (or **master**), folder **/ (root)** — not `/portfolio` alone, so `index.html` and `Paintings/` are served.
-4. After deploy, the site URL is `https://<user>.github.io/<repo>/` (redirects to the homepage project).
+3. Branch **main** (or **master**), folder **/ (root)** — not `/portfolio` alone.
+4. After deploy, the site URL is `https://<user>.github.io/<repo>/` (redirects to `/MANA/`). With custom domain `tonyzhaostudio.com`, pages are `tonyzhaostudio.com/MANA/`, etc.
 5. **Custom domain**: Pages settings → add your domain; at your registrar set the DNS records GitHub shows (usually `A` + `CNAME` for `www`).
 
 Optional local symlink `portfolio/Paintings → ../Paintings` is not required for deploy.

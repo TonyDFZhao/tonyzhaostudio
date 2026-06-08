@@ -436,6 +436,7 @@ img {
 }
 
 .gallery__nav-zone {
+  -webkit-tap-highlight-color: transparent;
   background: transparent;
   border: none;
   bottom: 0;
@@ -915,7 +916,8 @@ img {
   border: none;
   cursor: pointer;
   flex-shrink: 0;
-  padding: 2px 0;
+  margin: -4px;
+  padding: 6px 4px;
 }
 
 .topnav__menu img {
@@ -1080,8 +1082,10 @@ img {
     height: 100%;
     min-height: 100%;
     overflow-x: auto;
+    overscroll-behavior-x: contain;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
+    touch-action: pan-x;
     width: 100%;
     -webkit-overflow-scrolling: touch;
   }
@@ -1091,35 +1095,37 @@ img {
   }
 
   .gallery__nav-zone {
-    display: block;
-    width: 30%;
-    z-index: 6;
-  }
-
-  .gallery__nav-zone--prev {
-    cursor: pointer;
-  }
-
-  .gallery__nav-zone--next {
-    cursor: pointer;
-    width: 30%;
+    display: none !important;
   }
 
   .gallery__caption {
+    -webkit-overflow-scrolling: touch;
     align-items: flex-start;
     bottom: 0;
     flex-direction: row;
+    flex-wrap: nowrap;
     gap: 16px;
     justify-content: space-between;
     left: auto;
     line-height: 1;
+    overflow-x: auto;
+    pointer-events: auto;
     right: 0;
+    scrollbar-width: none;
     white-space: nowrap;
     width: 100%;
   }
 
+  .gallery__caption::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gallery__caption-title,
   .gallery__caption-details {
     flex-shrink: 0;
+  }
+
+  .gallery__caption-details {
     gap: 16px;
   }
 

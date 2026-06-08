@@ -1,11 +1,31 @@
 (function () {
-  const toggleIcon = "assets/nav-toggle.svg";
-  const menuIcon = "assets/nav-menu.svg";
+  const ASSET_BASE = SITE_CONFIG.assetBase || "";
+  const toggleIcon = `${ASSET_BASE}/assets/nav-toggle.svg`;
+  const menuIcon = `${ASSET_BASE}/assets/nav-menu.svg`;
   const MOBILE_MAX = 402;
 
-  function getCurrentPage() {
-    const path = window.location.pathname;
-    return path.slice(path.lastIndexOf("/") + 1) || SITE_CONFIG.homePage;
+  const LEGACY_SLUGS = {
+    "MANA_2026.html": "MANA",
+    "Specimens_2026.html": "Specimens",
+    "NARS-Foundation_2025.html": "NARS-Foundation",
+    "Lake-House_2024.html": "Lake-House",
+    "Norfolk_2023.html": "Norfolk",
+    "about_2023.html": "bio",
+    "exhibition-text-lake-house.html": "the-room-built-with-gaze",
+  };
+
+  function getCurrentSlug() {
+    let path = window.location.pathname;
+    if (path.endsWith("/index.html")) {
+      path = path.slice(0, -"/index.html".length);
+    }
+    if (path.endsWith("/")) {
+      path = path.slice(0, -1);
+    }
+    let slug = path.split("/").filter(Boolean).pop() || "";
+    if (LEGACY_SLUGS[slug]) return LEGACY_SLUGS[slug];
+    if (!slug || slug === "portfolio") return SITE_CONFIG.homeSlug;
+    return slug;
   }
 
   function buildNameInner(compact) {
@@ -22,18 +42,18 @@
         ${buildNameInner(true)}
       </button>`;
     }
-    return `<a class="sidebar__name-link" href="${SITE_CONFIG.aboutPage}">
+    return `<a class="sidebar__name-link" href="${SITE_CONFIG.aboutUrl()}">
       ${buildNameInner(false)}
     </a>`;
   }
 
-  function buildProjectList(currentPage) {
+  function buildProjectList(currentSlug) {
     return SITE_CONFIG.projects
       .map((p) => {
-        const active = p.page === currentPage ? " is-active" : "";
+        const active = p.slug === currentSlug ? " is-active" : "";
         return `
           <li class="sidebar__project">
-            <a class="sidebar__project-link${active}" href="${p.page}">
+            <a class="sidebar__project-link${active}" href="${SITE_CONFIG.projectUrl(p.slug)}">
               <span class="sidebar__project-year">${p.year}</span>
               <span class="sidebar__project-title">${p.title}</span>
             </a>
@@ -64,7 +84,7 @@
 
   function buildDesktopSidebar(options) {
     const { showViewToggle = false, viewMode = "gallery", aboutActive = false } = options;
-    const currentPage = getCurrentPage();
+    const currentSlug = getCurrentSlug();
     const aboutClass = aboutActive ? " is-active" : "";
 
     return `
@@ -79,10 +99,10 @@
           ${buildNameHtml(false)}
           <div>
             <p class="sidebar__projects-label">Projects</p>
-            <ul class="sidebar__projects">${buildProjectList(currentPage)}</ul>
+            <ul class="sidebar__projects">${buildProjectList(currentSlug)}</ul>
           </div>
           <div class="sidebar__about${aboutClass}">
-            <a class="sidebar__about-link" href="${SITE_CONFIG.aboutPage}">Bio/CV</a>
+            <a class="sidebar__about-link" href="${SITE_CONFIG.aboutUrl()}">Bio/CV</a>
           </div>
         </div>
         ${buildViewToggle(showViewToggle, viewMode)}
@@ -91,7 +111,7 @@
 
   function buildMobileNav(options) {
     const { aboutActive = false } = options;
-    const currentPage = getCurrentPage();
+    const currentSlug = getCurrentSlug();
     const aboutClass = aboutActive ? " is-active" : "";
 
     return `
@@ -105,10 +125,10 @@
         <div class="topnav__body" id="topnav-body" aria-hidden="true">
           <div class="topnav__projects">
             <p class="sidebar__projects-label">Projects</p>
-            <ul class="sidebar__projects">${buildProjectList(currentPage)}</ul>
+            <ul class="sidebar__projects">${buildProjectList(currentSlug)}</ul>
           </div>
           <div class="sidebar__about${aboutClass}">
-            <a class="sidebar__about-link" href="${SITE_CONFIG.aboutPage}">Bio/CV</a>
+            <a class="sidebar__about-link" href="${SITE_CONFIG.aboutUrl()}">Bio/CV</a>
           </div>
         </div>
       </nav>`;

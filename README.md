@@ -5,11 +5,10 @@ Static site in [`portfolio/`](portfolio/). Artwork JPEGs/PNGs live in [`Painting
 ## Local preview
 
 ```bash
-cd portfolio
 python3 -m http.server 8080
 ```
 
-Open http://localhost:8080/MANA_2026.html
+Open http://localhost:8080/MANA/
 
 ## Edit content
 

@@ -1,8 +1,9 @@
 /**
  * Site configuration — edit this file when adding projects or changing the home page.
  *
- * To make a new project the homepage: set `homePage` to that project's `page` filename.
- * To add a project: add an entry to `projects`, create a new HTML file from any project template.
+ * URLs: /MANA/, /Specimens/, /bio/, /the-room-built-with-gaze/ (see slug fields).
+ * To change the homepage: set `homeSlug` to that project's slug.
+ * To add a project: add an entry to `projects`, create `/<slug>/index.html` at repo root.
  *
  * Per image (gallery caption, Figma 131:3815):
  * - `title` — Director; `size`, `medium`, `year` — KMR Waldenburg (16px gaps)
@@ -12,17 +13,31 @@
  * Per project: `showGridView: false` — gallery only (hides Gallery/Grid toggle).
  */
 const SITE_CONFIG = {
-  homePage: "MANA_2026.html",
-  cvFile: "assets/CV.pdf",
-  exhibitionTextPage: "exhibition-text-lake-house.html",
+  assetBase: "/portfolio",
+  homeSlug: "MANA",
+  aboutSlug: "bio",
+  exhibitionTextSlug: "the-room-built-with-gaze",
+  cvFile: "/portfolio/assets/CV.pdf",
+
+  projectUrl(slug) {
+    return `/${slug}/`;
+  },
+
+  aboutUrl() {
+    return `/${this.aboutSlug}/`;
+  },
+
+  exhibitionTextUrl() {
+    return `/${this.exhibitionTextSlug}/`;
+  },
 
   projects: [
     {
       id: "mana-2026",
       year: "2026",
       title: "MANA",
-      page: "MANA_2026.html",
-      imageDir: "../Paintings/MANA-2026/",
+      slug: "MANA",
+      imageDir: "/Paintings/MANA-2026/",
       images: [
         {
           file: "1.png",
@@ -79,8 +94,8 @@ const SITE_CONFIG = {
       id: "specimens-2026",
       year: "2026",
       title: "Specimens",
-      page: "Specimens_2026.html",
-      imageDir: "../Paintings/Specimens-2026/",
+      slug: "Specimens",
+      imageDir: "/Paintings/Specimens-2026/",
       images: [
         {
           file: "1.jpg",
@@ -164,8 +179,8 @@ const SITE_CONFIG = {
       id: "nars-foundation-2025",
       year: "2025",
       title: "NARS Foundation",
-      page: "NARS-Foundation_2025.html",
-      imageDir: "../Paintings/NARS-Foundation-2025/",
+      slug: "NARS-Foundation",
+      imageDir: "/Paintings/NARS-Foundation-2025/",
       images: [
         {
           file: "1.jpg",
@@ -245,8 +260,8 @@ const SITE_CONFIG = {
       id: "lake-house-2024",
       year: "2024",
       title: "Lake House",
-      page: "Lake-House_2024.html",
-      imageDir: "../Paintings/Lake-House-2024/",
+      slug: "Lake-House",
+      imageDir: "/Paintings/Lake-House-2024/",
       images: [
         {
           file: "1.jpg",
@@ -534,8 +549,8 @@ const SITE_CONFIG = {
       id: "norfolk-2023",
       year: "2023",
       title: "Norfolk",
-      page: "Norfolk_2023.html",
-      imageDir: "../Paintings/Norfolk-2023/",
+      slug: "Norfolk",
+      imageDir: "/Paintings/Norfolk-2023/",
       showGridView: false,
       images: [
         {
@@ -605,6 +620,4 @@ const SITE_CONFIG = {
       ],
     },
   ],
-
-  aboutPage: "about_2023.html",
 };

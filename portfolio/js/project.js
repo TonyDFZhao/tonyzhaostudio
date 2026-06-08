@@ -50,6 +50,10 @@
     sessionStorage.setItem(`portfolio-index-${projectId}`, String(index));
   }
 
+  function removeGalleryNavigation() {
+    document.querySelectorAll(".gallery__nav-zone").forEach((el) => el.remove());
+  }
+
   function setupGalleryNavigation() {
     const stage = document.querySelector(".gallery__stage");
     if (!stage || stage.querySelector(".gallery__nav-zone")) return;
@@ -110,6 +114,8 @@
   }
 
   function setupMobileGallery() {
+    if (mobileTrack) return;
+
     const stage = document.querySelector(".gallery__stage");
     const desktopWrap = stage?.querySelector(".gallery__image-wrap");
     if (!stage || !desktopWrap || !project.images.length) return;
@@ -163,6 +169,12 @@
   function teardownMobileGallery() {
     mobileTrack?.remove();
     mobileTrack = null;
+  }
+
+  function resetGalleryMode() {
+    teardownMobileGallery();
+    removeGalleryNavigation();
+    initGalleryMode();
   }
 
   function isGridVisible(item) {
@@ -241,16 +253,19 @@
   }
 
   function initGalleryMode() {
-    setupGalleryNavigation();
     const mobile = isMobileViewport();
+
     if (mobile) {
+      removeGalleryNavigation();
       setupMobileGallery();
-    } else {
-      teardownMobileGallery();
-      const galleryImg = document.getElementById("gallery-image");
-      if (galleryImg) galleryImg.classList.add("gallery__image--fill");
-      renderGallery(getCurrentIndex());
+      return;
     }
+
+    teardownMobileGallery();
+    setupGalleryNavigation();
+    const galleryImg = document.getElementById("gallery-image");
+    if (galleryImg) galleryImg.classList.add("gallery__image--fill");
+    renderGallery(getCurrentIndex());
   }
 
   window.initProjectPage = function () {
@@ -279,13 +294,16 @@
       if (e.key === "ArrowLeft") goToIndex(getCurrentIndex() - 1);
     });
 
+    let wasMobile = isMobileViewport();
+
     window.addEventListener("resize", () => {
       const nowMobile = isMobileViewport();
       if (nowMobile) {
         setView("gallery", { persist: false });
-        if (!mobileTrack) initGalleryMode();
-      } else if (mobileTrack) {
-        initGalleryMode();
+      }
+      if (nowMobile !== wasMobile) {
+        resetGalleryMode();
+        wasMobile = nowMobile;
       }
     });
   };
