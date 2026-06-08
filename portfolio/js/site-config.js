@@ -14,21 +14,33 @@
  */
 const SITE_CONFIG = {
   assetBase: "/portfolio",
+  assetVersion: "2",
+  siteBase: "",
   homeSlug: "MANA",
   aboutSlug: "bio",
   exhibitionTextSlug: "the-room-built-with-gaze",
   cvFile: "/portfolio/assets/CV.pdf",
 
+  siteUrl(path) {
+    const base = (this.siteBase || "").replace(/\/$/, "");
+    const segment = String(path).replace(/^\/+|\/+$/g, "");
+    const pathname = segment ? `${base}/${segment}/` : `${base}/`;
+    if (typeof window !== "undefined" && window.location?.origin) {
+      return new URL(pathname, window.location.origin).href;
+    }
+    return pathname;
+  },
+
   projectUrl(slug) {
-    return `/${slug}/`;
+    return this.siteUrl(slug);
   },
 
   aboutUrl() {
-    return `/${this.aboutSlug}/`;
+    return this.siteUrl(this.aboutSlug);
   },
 
   exhibitionTextUrl() {
-    return `/${this.exhibitionTextSlug}/`;
+    return this.siteUrl(this.exhibitionTextSlug);
   },
 
   projects: [
@@ -56,7 +68,7 @@ const SITE_CONFIG = {
         {
           file: "3.jpg",
           title: "Rococo",
-          size: "40x30 inches",
+          size: "48x36 inches",
           medium: "oil on canvas",
           year: "2026",
         },

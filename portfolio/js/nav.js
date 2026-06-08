@@ -47,13 +47,22 @@
     </a>`;
   }
 
+  function projectHref(project) {
+    const slug =
+      project.slug ||
+      LEGACY_SLUGS[project.page] ||
+      String(project.title || "").replace(/\s+/g, "-");
+    return SITE_CONFIG.projectUrl(slug);
+  }
+
   function buildProjectList(currentSlug) {
     return SITE_CONFIG.projects
       .map((p) => {
-        const active = p.slug === currentSlug ? " is-active" : "";
+        const slug = p.slug || LEGACY_SLUGS[p.page] || p.title;
+        const active = slug === currentSlug ? " is-active" : "";
         return `
           <li class="sidebar__project">
-            <a class="sidebar__project-link${active}" href="${SITE_CONFIG.projectUrl(p.slug)}">
+            <a class="sidebar__project-link${active}" href="${projectHref(p)}">
               <span class="sidebar__project-year">${p.year}</span>
               <span class="sidebar__project-title">${p.title}</span>
             </a>
