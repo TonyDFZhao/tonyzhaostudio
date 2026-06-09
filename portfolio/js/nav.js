@@ -194,9 +194,21 @@
       setNavCollapsed(false);
     });
 
-    document.getElementById("mobile-menu-toggle")?.addEventListener("click", () => {
+    document.getElementById("mobile-menu-toggle")?.addEventListener("click", (e) => {
+      e.stopPropagation();
       const topnav = document.getElementById("topnav");
       setMobileMenuOpen(!topnav?.classList.contains("is-expanded"));
+    });
+
+    document.getElementById("topnav")?.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+
+    document.addEventListener("click", () => {
+      const topnav = document.getElementById("topnav");
+      if (topnav?.classList.contains("is-expanded")) {
+        setMobileMenuOpen(false);
+      }
     });
   };
 
