@@ -6,8 +6,8 @@ Static HTML portfolio for Tony Dongfang Zhao. Designed at **1440px** (desktop mi
 
 ```
 /
-├── index.html                  ← redirects to /MANA/
-├── MANA/index.html             ← homepage (change homeSlug in site-config.js)
+├── index.html                  ← redirects to /C24/
+├── C24/index.html              ← homepage (change homeSlug in site-config.js)
 ├── Specimens/index.html
 ├── NARS-Foundation/index.html
 ├── Lake-House/index.html
@@ -30,7 +30,7 @@ Images live in `Paintings/<project-folder>/` at the repo root. Paths in `site-co
 
 | Page | URL |
 |------|-----|
-| MANA (home) | `/MANA/` |
+| C24 (home) | `/C24/` |
 | Specimens | `/Specimens/` |
 | NARS Foundation | `/NARS-Foundation/` |
 | Lake House | `/Lake-House/` |
@@ -77,14 +77,14 @@ Serve from the **repository root** (not `portfolio/` alone):
 python3 -m http.server 8080
 ```
 
-Open http://localhost:8080/MANA/
+Open http://localhost:8080/C24/
 
 ## Publish on GitHub Pages
 
 1. Push this repo to GitHub (`portfolio/`, route folders, `Paintings/`, root `index.html`, fonts, and assets must all be included).
 2. In the repo: **Settings → Pages → Build and deployment → Source**: Deploy from a branch.
 3. Branch **main** (or **master**), folder **/ (root)** — not `/portfolio` alone.
-4. After deploy, the site URL is `https://<user>.github.io/<repo>/` (redirects to `/MANA/`). With custom domain `tonyzhaostudio.com`, pages are `tonyzhaostudio.com/MANA/`, etc.
+4. After deploy, the site URL is `https://<user>.github.io/<repo>/` (redirects to `/C24/`). With custom domain `tonyzhaostudio.com`, pages are `tonyzhaostudio.com/C24/`, etc.
 5. **Custom domain**: Pages settings → add your domain; at your registrar set the DNS records GitHub shows (usually `A` + `CNAME` for `www`).
 
 Optional local symlink `portfolio/Paintings → ../Paintings` is not required for deploy.

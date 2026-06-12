@@ -571,6 +571,10 @@ img {
   width: 100%;
 }
 
+.grid__cell-link:hover {
+  opacity: 1;
+}
+
 .grid__cell img {
   display: block;
   height: 100%;

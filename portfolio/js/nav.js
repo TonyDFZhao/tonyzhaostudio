@@ -6,8 +6,9 @@
 
   const LEGACY_SLUGS = {
     "MANA_2026.html": "MANA",
+    "C24_2026.html": "MANA",
     "Specimens_2026.html": "Specimens",
-    "NARS-Foundation_2025.html": "NARS-Foundation",
+    "NARS-Foundation_2025.html": "MANA",
     "Lake-House_2024.html": "Lake-House",
     "Norfolk_2023.html": "Norfolk",
     "about_2023.html": "bio",

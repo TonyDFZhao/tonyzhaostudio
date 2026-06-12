@@ -8,7 +8,7 @@ Static site in [`portfolio/`](portfolio/). Artwork JPEGs/PNGs live in [`Painting
 python3 -m http.server 8080
 ```
 
-Open http://localhost:8080/MANA/
+Open http://localhost:8080/C24/
 
 ## Edit content
 
