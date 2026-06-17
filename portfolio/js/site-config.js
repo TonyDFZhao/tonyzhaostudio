@@ -1,7 +1,7 @@
 /**
  * Site configuration — edit this file when adding projects or changing the home page.
  *
- * URLs: /MANA/, /Specimens/, /bio/, /the-room-built-with-gaze/ (see slug fields).
+ * URLs: /Contact-Points/, /Specimens/, /bio/, /the-room-built-with-gaze/ (see slug fields).
  * To change the homepage: set `homeSlug` to that project's slug.
  * To add a project: add an entry to `projects`, create `/<slug>/index.html` at repo root.
  *
@@ -16,7 +16,7 @@ const SITE_CONFIG = {
   assetBase: "/portfolio",
   assetVersion: "2",
   siteBase: "",
-  homeSlug: "MANA",
+  homeSlug: "Contact-Points",
   aboutSlug: "bio",
   exhibitionTextSlug: "the-room-built-with-gaze",
   cvFile: "/bio/ZHAO_CV.pdf",
@@ -47,8 +47,8 @@ const SITE_CONFIG = {
     {
       id: "c24-2026",
       year: "2026",
-      title: "MANA",
-      slug: "MANA",
+      title: "Contact Points",
+      slug: "Contact-Points",
       imageDir: "/Paintings/C24-2026/",
       images: [
         {

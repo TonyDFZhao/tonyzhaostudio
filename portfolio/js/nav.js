@@ -5,10 +5,12 @@
   const MOBILE_MAX = 402;
 
   const LEGACY_SLUGS = {
-    "MANA_2026.html": "MANA",
-    "C24_2026.html": "MANA",
+    MANA: "Contact-Points",
+    C24: "Contact-Points",
+    "MANA_2026.html": "Contact-Points",
+    "C24_2026.html": "Contact-Points",
     "Specimens_2026.html": "Specimens",
-    "NARS-Foundation_2025.html": "MANA",
+    "NARS-Foundation_2025.html": "NARS-Foundation",
     "Lake-House_2024.html": "Lake-House",
     "Norfolk_2023.html": "Norfolk",
     "about_2023.html": "bio",
