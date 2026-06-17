@@ -19,7 +19,7 @@ const SITE_CONFIG = {
   homeSlug: "MANA",
   aboutSlug: "bio",
   exhibitionTextSlug: "the-room-built-with-gaze",
-  cvFile: "/portfolio/assets/CV.pdf",
+  cvFile: "/bio/ZHAO_CV.pdf",
 
   siteUrl(path) {
     const base = (this.siteBase || "").replace(/\/$/, "");

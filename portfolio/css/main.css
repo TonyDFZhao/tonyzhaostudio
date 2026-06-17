@@ -656,6 +656,10 @@ img {
   letter-spacing: -0.48px;
 }
 
+.about__bio-location {
+  opacity: 0.6;
+}
+
 .about__contact {
   display: flex;
   flex-direction: column;
@@ -674,11 +678,22 @@ img {
   letter-spacing: -0.44px;
   line-height: 1.4;
   opacity: 0.6;
-  width: 66px;
+  width: 37px;
 }
 
-.about__contact-row + .about__contact-row .about__contact-label {
-  width: auto;
+.about__contact-value {
+  color: inherit;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.about__contact-value:hover {
+  opacity: 1;
+}
+
+.about__contact-value--link {
+  text-decoration: underline;
+  text-underline-position: from-font;
 }
 
 .about__link {
