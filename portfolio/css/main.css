@@ -68,13 +68,11 @@
 html {
   -webkit-font-smoothing: antialiased;
   overflow-x: auto;
-  overscroll-behavior: none;
 }
 
 body {
   margin: 0;
   min-width: 800px;
-  overscroll-behavior: none;
   color: var(--color-text);
   font-family: var(--font-waldenburg);
   font-size: 12px;
@@ -119,7 +117,6 @@ img {
   display: flex;
   gap: var(--page-gap);
   min-height: 100vh;
-  overscroll-behavior: none;
   padding: var(--page-padding);
 }
 
@@ -413,7 +410,6 @@ img {
   min-height: calc(100vh - 16px);
   min-width: 0;
   overflow: hidden;
-  overscroll-behavior: none;
   position: relative;
 }
 
@@ -547,7 +543,6 @@ img {
   min-height: 0;
   min-width: 0;
   overflow: auto;
-  overscroll-behavior: none;
 }
 
 .grid__works {
@@ -600,7 +595,6 @@ img {
   max-height: 100%;
   min-width: 0;
   overflow: auto;
-  overscroll-behavior: none;
 }
 
 /* Bio/CV — Figma 160:1335 (1440 sticky portrait), 180:2034 (1024 stack) */
@@ -632,7 +626,6 @@ img {
   flex-direction: column;
   gap: 48px;
   min-width: 0;
-  overscroll-behavior: none;
   width: 500px;
 }
 
@@ -788,7 +781,6 @@ img {
   max-height: 100%;
   min-width: 0;
   overflow: auto;
-  overscroll-behavior: none;
 }
 
 .text__layout {
@@ -1049,12 +1041,10 @@ img {
 @media (max-width: 402px) {
   html {
     overflow-x: hidden;
-    overscroll-behavior: none;
   }
 
   body {
     min-width: 0;
-    overscroll-behavior: none;
   }
 
   .nav-desktop {
@@ -1124,7 +1114,6 @@ img {
     height: 100%;
     min-height: 100%;
     overflow-x: auto;
-    overscroll-behavior: none;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     touch-action: pan-x;
@@ -1281,6 +1270,17 @@ img {
 }
 
 @media (min-width: 403px) {
+  html,
+  body,
+  .app,
+  .main--gallery,
+  .main--grid,
+  .main--about,
+  .about__scroll,
+  .main--text {
+    overscroll-behavior: none;
+  }
+
   .nav-mobile {
     display: none !important;
   }
