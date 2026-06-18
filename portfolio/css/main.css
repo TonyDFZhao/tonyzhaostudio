@@ -63,7 +63,6 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  overscroll-behavior: none;
 }
 
 html {
@@ -130,6 +129,9 @@ img {
 
 .app--project-grid {
   background: #fff;
+  height: calc(100vh - 2 * var(--page-padding));
+  max-height: calc(100vh - 2 * var(--page-padding));
+  overflow: hidden;
 }
 
 .app--about,
@@ -542,7 +544,7 @@ img {
   flex: 1;
   flex-direction: column;
   gap: 10px;
-  min-height: calc(100vh - 16px);
+  min-height: 0;
   min-width: 0;
   overflow: auto;
   overscroll-behavior: none;

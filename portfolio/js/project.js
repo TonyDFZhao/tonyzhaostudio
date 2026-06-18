@@ -215,6 +215,24 @@
     });
   }
 
+  function setupGridWheelScroll() {
+    const gridMain = document.querySelector(".main--grid");
+    if (!gridMain || gridMain.dataset.wheelBound) return;
+    gridMain.dataset.wheelBound = "1";
+
+    gridMain.addEventListener(
+      "wheel",
+      (e) => {
+        if (!e.target.closest(".grid__cell")) return;
+        if (gridMain.scrollHeight <= gridMain.clientHeight) return;
+        if (e.deltaY === 0) return;
+        gridMain.scrollTop += e.deltaY;
+        e.preventDefault();
+      },
+      { passive: false }
+    );
+  }
+
   function gridViewEnabled() {
     return project.showGridView !== false;
   }
@@ -280,6 +298,7 @@
     initSidebar();
 
     renderGrid();
+    setupGridWheelScroll();
     initGalleryMode();
     setView(storedView);
 
